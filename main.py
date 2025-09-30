@@ -55,11 +55,11 @@ INTEGRANTES:
 Alex David Portero Donoso
 Aracely Maribel Quintanilla Rumipamba
 DOCENTE:
-Mgs. KATHERINE ESTEFANIA CORO VILLARREAL
+Mgs. SANTIAGO ISRAEL NOGALES GUERRERO
 SEMESTRE: 
 Segundo Nivel
 FECHA: 
-viernes, 26 de septiembre de 2025"""
+domingo, 5 de octubre de 2025"""
 
         # Frame con fondo cyan
         frame_info = tk.Frame(self.root, bg="sky blue")  #  Crea frame con fondo azul cielo
