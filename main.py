@@ -12,6 +12,7 @@ from interfaz_productos import InterfazProductos  #  Importa clase de interfaz d
 from inventario import Inventario  #  Importa clase Inventario
 from tkinter import PhotoImage  #  Importa para manejar imágenes en tkinter
 from PIL import Image, ImageTk  #  Importa para procesamiento de imágenes
+from tkinter import ttk, messagebox  #  Importa widgets mejorados y cuadros de mensaje
 
 class AplicacionPrincipal:
     def __init__(self):  #  Constructor de la aplicación principal
@@ -24,6 +25,7 @@ class AplicacionPrincipal:
         self.root.title("Sistema de Inventario - POO")  #  Establece título de ventana
         self.root.geometry("1200x600")  #  Define tamaño de ventana
         self.root.configure(bg="#E6F2FF")  #  Establece color de fondo azul claro
+        self.root.attributes("-alpha", 0.95)
 
         self.root.resizable(False, False) #  Impide redimensionar ventana
 
@@ -62,19 +64,17 @@ FECHA:
 domingo, 5 de octubre de 2025"""
 
         # Frame con fondo cyan
-        frame_info = tk.Frame(self.root, bg="sky blue")  #  Crea frame con fondo azul cielo
+        frame_info = tk.Frame(self.root, bg="#D0EAFB")  #  Crea frame con fondo azul cielo
         frame_info.pack(pady=20)  #  Empaqueta frame con espacio
 
         # Título del frame
         tk.Label(frame_info, text="Información del Estudiante",
-                 font=('Arial', 14, 'bold'),
-                 fg="#003366",  # Color azul oscuro para texto
-                 bg="sky blue"  #  Mismo fondo que frame
-                 ).pack(pady=5)  #  Empaqueta título
+                 font=('Times New Roman', 14, 'bold'),
+                 fg="#003366", bg="#D0EAFB").pack(pady=5)
 
         # Información del estudiante
         tk.Label(frame_info, text=info_estudiante.strip(),
-                 font=('Arial', 11),
+                 font=('Times New Roman', 11),
                  justify=tk.CENTER,
                  anchor='center',
                  fg="#333333",  #  Color gris oscuro para texto
@@ -103,12 +103,26 @@ domingo, 5 de octubre de 2025"""
         # Etiqueta del atajo de teclado
         tk.Label(frame_menu,
                  text="Presiona Escape para salir de la aplicación",
-                 font=('Arial', 8),
+                 font=('New Times Roman', 8),
                  fg="SpringGreen3",  #  Color verde para texto
                  bg="#E6F2FF").pack(pady=10)  # Empaqueta etiqueta informativa
 
     def abrir_gestion_productos(self):  # Método para abrir ventana de gestión
-        InterfazProductos(self.root, self.inventario)  #  Crea nueva ventana de productos
+        # Verificar si ya existe una ventana de gestión abierta
+        if hasattr(self, 'ventana_gestion') and self.ventana_gestion.winfo_exists():
+            return  # Si ya está abierta, no hace nada
+
+        # Crear nueva ventana de gestión
+        self.ventana_gestion = InterfazProductos(self.root, self.inventario)
+
+        # Configurar como ventana modal
+        self.ventana_gestion.ventana.transient(self.root)  # Relación con la principal
+        self.ventana_gestion.ventana.grab_set()  # Bloquea la principal
+        self.root.wait_window(self.ventana_gestion.ventana)  # Espera hasta que se cierre
+        self.ventana_gestion.ventana.deiconify()
+
+        # Al cerrarse, elimina la referencia para permitir abrirla nuevamente
+        del self.ventana_gestion
 
     def salir_aplicacion(self, event=None):  #  Método para cerrar aplicación
         self.root.quit()  # Cierra ventana principal y termina aplicación

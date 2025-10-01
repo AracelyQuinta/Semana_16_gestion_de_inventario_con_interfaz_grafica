@@ -137,8 +137,34 @@ class InterfazProductos:
             raise ValueError("Cantidad y Precio deben ser números válidos")  #  Lanza error descriptivo
 
     def agregar_producto(self):  #  Método para agregar nuevo producto al inventario
+        """
+        aqui deviamos preguntar si ya existe ese codigo
+        si ya existe deberiaamos decirle que ya no puede ingresar ese codigo
+        """
+
         try:
-            datos = self.obtener_datos_formulario()  #  Obtiene datos validados del formulario
+            datos = self.obtener_datos_formulario()
+
+            productos_existentes = self.inventario.obtener_todos_productos()
+            ids_existentes = [p.get_id() for p in productos_existentes]
+
+            if datos['id'] in ids_existentes:
+                # Mostrar advertencia si el ID ya está registrado
+                messagebox.showwarning("ID duplicado",
+                                       f"Ya existe un producto con el ID '{datos['id']}'. Por favor, use otro ID.")
+                return  # Detiene el proceso de agregar
+
+            # Si el ID es nuevo, se crea y agrega el producto
+            producto = Producto(datos['id'], datos['nombre'], datos['cantidad'], datos['precio'])
+            self.inventario.agregar_producto(producto)
+            messagebox.showinfo("Éxito", "Producto agregado correctamente")
+            self.limpiar_campos()
+            self.listar_productos()
+
+        except Exception as e:
+            messagebox.showerror("Error", f"No se pudo agregar el producto: {str(e)}")
+
+            #  Obtiene datos validados del formulario
             producto = Producto(datos['id'], datos['nombre'], datos['cantidad'], datos['precio'])  #  Crea objeto Producto
             self.inventario.agregar_producto(producto)  #  Agrega producto al inventario
             messagebox.showinfo("Éxito", "Producto agregado correctamente")  #  Muestra mensaje de confirmación

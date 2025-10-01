@@ -1,43 +1,41 @@
-1,Manzana,1,0.25
-2,Banana,1,0.30
-3,Naranja,1,0.40
-4,Uva,1,0.50
+2,Banana,5,0.3
+3,Naranja,1,0.4
+4,Uva,30,0.5
 5,Pera,1,0.35
 6,Mango,1,0.75
-7,Papaya,1,0.80
-8,Kiwii,1,0.60
+7,Papaya,1,0.8
+8,Kiwii,1,0.6
 10,Fresa,1,0.45
-11,Cereza,1,0.90
-14,Frambuesa,1,0.70
+11,Cereza,1,0.9
+14,Frambuesa,1,0.7
 16,Higo,1,0.95
 18,Lima,1,0.25
 19,Durazno,1,0.55
-20,Ciruela,1,0.60
+20,Ciruela,1,0.6
 21,Nectarina,1,0.65
 22,Granada,1,0.75
 24,Mandarina,1,0.35
-25,Toronja,1,0.50
-26,Coco,1,1.10
-27,Guayaba,1,0.70
-28,Pomelo,1,0.80
+25,Toronja,1,0.5
+26,Coco,1,1.1
+27,Guayaba,1,0.7
+28,Pomelo,1,0.8
 29,Aguacate,1,1.25
-30,Chirimoya,1,1.40
-31,Carambola,1,1.00
+30,Chirimoya,1,1.4
+31,Carambola,1,1.0
 32,Mora,1,0.55
-33,Grosella,1,0.60
-34,Membrillo,1,0.50
+33,Grosella,1,0.6
+34,Membrillo,1,0.5
 35,Physalis,1,0.65
-37,Kiwi Amarillo,1,0.90
-38,Litchi,1,1.10
-39,Longan,1,1.20
-41,Dragon Fruit,1,2.00
-42,Pitahaya,1,1.80
-43,Jackfruit,1,2.50
-44,Sapote,1,1.60
+37,Kiwi Amarillo,1,0.9
+38,Litchi,1,1.1
+39,Longan,1,1.2
+41,Dragon Fruit,1,2.0
+42,Pitahaya,1,1.8
+43,Jackfruit,1,2.5
+44,Sapote,10,1.6
 45,Feijoa,1,0.95
-46,Bayberry,1,1.00
-47,Camu Camu,1,1.50
+46,Bayberry,1,1.0
+47,Camu Camu,1,1.5
 48,Avellana,1,0.85
-49,Nance,1,0.70
-50,Cranberry,1,1.20
-5
+49,Nance,1,0.7
+50,Cranberry,1,1.2
