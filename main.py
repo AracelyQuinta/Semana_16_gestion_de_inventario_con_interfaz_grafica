@@ -108,21 +108,24 @@ domingo, 5 de octubre de 2025"""
                  bg="#E6F2FF").pack(pady=10)  # Empaqueta etiqueta informativa
 
     def abrir_gestion_productos(self):  # Método para abrir ventana de gestión
-        # Verificar si ya existe una ventana de gestión abierta
-        if hasattr(self, 'ventana_gestion') and self.ventana_gestion.winfo_exists():
-            return  # Si ya está abierta, no hace nada
+        if hasattr(self, 'ventana_gestion') and self.ventana_gestion.ventana.winfo_exists():
+            self.ventana_gestion.ventana.lift()
+            return
 
-        # Crear nueva ventana de gestión
         self.ventana_gestion = InterfazProductos(self.root, self.inventario)
 
-        # Configurar como ventana modal
-        self.ventana_gestion.ventana.transient(self.root)  # Relación con la principal
-        self.ventana_gestion.ventana.grab_set()  # Bloquea la principal
-        self.root.wait_window(self.ventana_gestion.ventana)  # Espera hasta que se cierre
-        self.ventana_gestion.ventana.deiconify()
+        self.ventana_gestion.ventana.transient(self.root)
+        self.ventana_gestion.ventana.grab_set()
 
-        # Al cerrarse, elimina la referencia para permitir abrirla nuevamente
-        del self.ventana_gestion
+    def cerrar_ventana(self):
+            self.ventana_gestion.ventana.grab_release()
+            self.ventana_gestion.ventana.destroy()
+            self.ventana_gestion = None  # Elimina la referencia para permitir abrirla de nuevo
+
+            #  Interceptar el evento de cierre (botón X)
+            self.ventana_gestion.ventana.protocol("WM_DELETE_WINDOW", cerrar_ventana())
+
+            self.root.wait_window(self.ventana_gestion.ventana)
 
     def salir_aplicacion(self, event=None):  #  Método para cerrar aplicación
         self.root.quit()  # Cierra ventana principal y termina aplicación
